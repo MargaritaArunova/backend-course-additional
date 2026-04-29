@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  app-additional:
+    image: margaritaarunova/backend-course-additional-app:latest
+    environment:
+      BACKEND_APP_URL: ${BACKEND_APP_URL:-http://localhost:8080}
+    container_name: backend-course-additional-app
+    deploy:
+      resources:
+        limits:
+          cpus: '${APP_CPU_LIMIT:-0.5}'
+          memory: ${APP_MEMORY_LIMIT:-512M}
+        reservations:
+          cpus: '${APP_CPU_RESERVATION:-0.2}'
+          memory: ${APP_MEMORY_RESERVATION:-256M}
+    ports:
+      - "8081:8081"
